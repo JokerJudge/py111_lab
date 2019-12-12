@@ -13,7 +13,7 @@ def push(elem: Any) -> None:
 	:param elem: element to be pushed
 	:return: Nothing
 	"""
-	print("Добавили элемент {} в стек".format(elem))
+	#print("Добавили элемент {} в стек".format(elem))
 	global stack
 	stack.append(elem)
 	return None
@@ -26,7 +26,7 @@ def pop() -> Any:
 	:return: popped element
 	"""
 	global stack
-	if stack is True:
+	if stack:
 		stack.pop()
 	else:
 		return None
@@ -41,13 +41,14 @@ def peek(ind: int = 0) -> Any:
 	:param ind: index of element (count from the top, 0 - top, 1 - first from top, etc.)
 	:return: peeked element or None if no element in this place
 	"""
-	print(ind)
+	#print(ind)
 	global stack
-	reverse = stack.reverse()
-	try:
-		x = reverse[ind]
+	#print(stack)
+	if stack:
+		x = stack[len(stack) - 1 - ind]
+		print(x)
 		return x
-	except:
+	else:
 		return None
 
 
@@ -63,4 +64,8 @@ def clear() -> None:
 
 if __name__ == "__main__":
 	push(1)
+	push(24)
+	push(47)
+	peek(0)
+	peek(1)
 	print(stack)
