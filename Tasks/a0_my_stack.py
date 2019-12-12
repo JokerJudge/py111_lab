@@ -13,7 +13,7 @@ def push(elem: Any) -> None:
 	:param elem: element to be pushed
 	:return: Nothing
 	"""
-	#print("Добавили элемент {} в стек".format(elem))
+	print("Добавили элемент {} в стек".format(elem))
 	global stack
 	stack.append(elem)
 	return None
@@ -66,6 +66,7 @@ if __name__ == "__main__":
 	push(1)
 	push(24)
 	push(47)
+	pop()
 	peek(0)
 	peek(1)
 	print(stack)
