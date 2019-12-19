@@ -3,6 +3,7 @@ This module implements some functions based on linear search algo
 """
 from typing import Sequence
 import numpy as np
+import time
 
 
 def min_search(arr: Sequence) -> int:
@@ -15,6 +16,16 @@ def min_search(arr: Sequence) -> int:
 	print(arr)
 	return -1
 
+def t(fn):
+	def wrapper(*args, **kwargs):
+		start = time.time()
+		result = fn(*args, **kwargs)
+		finish = time.time()
+		print(finish - start)
+		return result
+	return wrapper
+
+@t
 def finding_elem(find_elem, array):
 	index = None
 	for i, elem in enumerate(array):
@@ -26,8 +37,10 @@ def finding_elem(find_elem, array):
 
 	return index
 
+
+
 if __name__ == "__main__":
-	n = 1000
+	n = 10000000
 	array = np.arange(n)
 	find_elem = np.random.choice(array)
 	np.random.shuffle(array)
