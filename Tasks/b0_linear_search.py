@@ -1,10 +1,9 @@
 """
 This module implements some functions based on linear search algo
 """
-from typing import Sequence
+from typing import Any, Sequence, Optional
 import numpy as np
 import time
-
 
 def min_search(arr: Sequence) -> int:
 	"""
@@ -37,11 +36,45 @@ def finding_elem(find_elem, array):
 
 	return index
 
+@t
+def binary_search(elem: Any, arr: Sequence) -> Optional[int]:
+	"""
+	Performs binary search of given element inside of array
+
+	:param elem: element to be found
+	:param arr: array where element is to be found
+	:return: Index of element if it's presented in the arr, None otherwise
+	"""
+	arr = sorted(arr)
+	left = 0
+	right = len(arr) - 1
+	if elem in arr:
+		while True:
+			if right - left == 1:
+				if elem == arr[right]:
+					return right
+				elif elem == arr[left]:
+					return left
+				else:
+					return None
+			middle = (left + right) // 2
+			if elem == arr[middle]:
+				return middle
+			else:
+				if elem < arr[middle]:
+					right = middle - 1
+				elif elem > arr[middle]:
+					left = middle + 1
+
+	else:
+		return None
+
 
 
 if __name__ == "__main__":
-	n = 10000000
+	n = 1000000
 	array = np.arange(n)
-	find_elem = np.random.choice(array)
+	find_elem = 200000
 	np.random.shuffle(array)
 	print(finding_elem(find_elem, array))
+	print(binary_search(find_elem, array))
