@@ -42,10 +42,10 @@ def peek(ind: int = 0) -> Any:
 	"""
 	print(ind)
 	global stack
-	try:
+	if len(stack) - 1 - ind >= 0:
 		a = stack[len(stack) - 1 - ind]
 		return a
-	except:
+	else:
 		return None
 
 
