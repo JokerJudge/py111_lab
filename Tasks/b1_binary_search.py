@@ -35,7 +35,7 @@ def binary_search(elem: Any, arr: Sequence) -> Optional[int]:
 		return None
 
 
-
+#
 
 if __name__ == "__main__":
 	n = 1000
