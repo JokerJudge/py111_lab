@@ -6,6 +6,7 @@ Queue priorities are from 0 to 5
 from typing import Any
 
 queue = []
+MIN_QUEUE_PRIORITY = 5
 
 def enqueue(elem: Any, priority: int = 0) -> None:
 	"""
@@ -25,17 +26,26 @@ def dequeue() -> Any:
 
 	:return: dequeued element
 	"""
-	global queue
-	min = 5
+	global queue, MIN_QUEUE_PRIORITY
+	min_ = MIN_QUEUE_PRIORITY
+	min_res = None
 	if queue:
-		for i in queue: # находим сначала минимальный приоритет
-			if i[0] < min:
-				min = i[0]
-		for i in queue: # выбираем первый в списке элемент с минимальной очередью
-			if i[0] == min:
-				temp = i[1]
-				queue.remove(i)
-				return temp
+		#for i in queue: # находим сначала минимальный приоритет
+		#	if i[0] < min_:
+		#		min_ = i[0]
+		#for i in queue: # выбираем первый в списке элемент с минимальной очередью
+		#	if i[0] == min_:
+		#		temp = i[1]
+		#		queue.remove(i)
+		#		return temp
+		for i in queue: # переделал. Теперь работает за один проход по циклу
+			if i[0] < min_:
+				min_ = i[0]
+				min_res = i[1]
+		temp = min_res
+		queue.remove((min_, min_res))
+		return temp
+
 	else:
 		return None
 
