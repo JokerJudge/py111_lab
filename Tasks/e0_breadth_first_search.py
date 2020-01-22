@@ -11,9 +11,27 @@ def bfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
 	:param start_node: starting node for search
 	:return: list of nodes in the visited order
 	"""
-	print(g, start_node)
-	return list(g.nodes)
+	visited = [] # список посещенных вершин
+	queue = [] # список очереди
+	queue.append(start_node)
+	for node in queue:
+		d = g.adj[node]
+		visited.append(node)
+		for k in d:
+			if k in visited or k in queue:
+				pass
+			else:
+				queue.append(k)
 
+	return visited
+
+
+
+	# print(g, start_node)
+	# return list(g.nodes)
+
+'''
+# реализация поиска самого быстрого маршрута (поиск в ширину) на паре
 def bfs_find(graph, src, dst):
 	visited = {node: False for node in graph.nodes()}
 	parents = {src: src}
@@ -55,3 +73,22 @@ if __name__ == "__main__":
 	dst = "F"
 
 	print(bfs_find(graph, src, dst))
+'''
+
+if __name__ == "__main__":
+	g = nx.Graph()
+	g.add_nodes_from("ABCDEFG") # это 7 узлов в нашем графе
+	g.add_edges_from( # добавление простых связей
+		[
+			("A", "B"),
+			("A", "C"),
+			("B", "D"),
+			("B", "E"),
+			("C", "F"),
+			("E", "G"),
+			("D", "F") # - если добавим это при поиске от B до F - то найдет еще короче путь
+		]
+	)
+
+	g.add_node("Z")
+	print(bfs(g, "B"))
