@@ -12,7 +12,7 @@ def calculate_paths(shape: (int, int), point: (int, int)) -> int:
 	N = shape[0]  # строки
 	M = shape[1]  # столбцы
 
-	# point = (point[0] - 1, point[1] - 1)
+	#point = (point[0] - 1, point[1] - 1)
 
 	F[0, 0] = 1
 
@@ -34,12 +34,12 @@ def calculate_paths(shape: (int, int), point: (int, int)) -> int:
 
 	print(F)
 
-	return F[point]
+	return F[point[0], point[1]]
 
 
 if __name__ == "__main__":
-	N = 3
-	M = 3
-	point = (3, 3)
+	N = 8
+	M = 8
+	point = (7, 7)
 
-	calculate_paths((N, M), point)
+	print(calculate_paths((N, M), point))
