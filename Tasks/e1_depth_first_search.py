@@ -11,26 +11,21 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
 	:param start_node: starting node of search
 	:return: list of nodes in the visited order
 	"""
+	visited = []  # список посещенных вершин
+	queue = []  # список очереди (по медели стека)
+	queue.append(start_node)
+	for node in queue:
+		index = queue.index(node) # ставим указатель на текущий индекс в стеке
+		d = g.adj[node]
+		visited.append(node)
+		for k in d:
+			if k in visited or k in queue:
+				pass
+			else:
+				queue.insert(index + 1, k) # вставляем необходимые вершины сразу за текущим индексом
+				index += 1
 
-	# мои жалкие потуги
-	'''
-	visited = {node: False for node in g.nodes()}
-	for k, v in visited:
-		if v == False
-	print(g.nodes)
-	for node in g.nodes: #g.nodes - список
-		if not visited[node]:
-			visited[node] = True
-			lst_of_nodes.append(node)
-		dfs(g, node)
-	
-	return lst_of_nodes #list(g.nodes)
-	
-	'''
-
-
-	print(g, start_node)
-	return list(g.nodes)
+	return visited
 
 '''
 Работа на паре (dfs_find)
